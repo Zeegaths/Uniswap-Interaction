@@ -48,7 +48,6 @@ const main = async () => {
 
 
     const deadline = Math.floor(Date.now() / 1000) + (60 * 10);
-
  
     
         
