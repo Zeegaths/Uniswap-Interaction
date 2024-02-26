@@ -12,14 +12,13 @@ const main = async () => {
 
     const USDCHolder = "0xf584f8728b874a6a5c7a8d4d387c9aae9172d621";
 
-    // const WethHolder = "0xff8Ba4D1fC3762f6154cc942CCF30049A2A0cEC6";
+    
 
     await helpers.impersonateAccount(USDCHolder);
     const impersonatedSigner = await ethers.getSigner(USDCHolder);
 
     const amount1 = ethers.parseUnits("10", 6);
     const amount2 = ethers.parseUnits("10", 18);
-    // const amountIn = ethers.parseEther("1");
     
 
     const USDC = await ethers.getContractAt("IERC20", USDCAddress);
@@ -41,21 +40,12 @@ const main = async () => {
     const usdcBal = await USDC.balanceOf(impersonatedSigner.address);
     const daiBal = await DAI.balanceOf(impersonatedSigner.address);
 
-    // console.log("WETH Balance:", ethers.formatUnits(wethBal, 18));
-    // console.log("ETH Balance:",ethers.formatUnits(ethBal, 18));
+ 
     console.log("USDC Balance:", ethers.formatUnits(usdcBal, 6))
     console.log("DAI Balance:", ethers.formatUnits(daiBal, 18));
 
 
     const deadline = Math.floor(Date.now() / 1000) + (60 * 10);
-
-    // const swapTx = await ROUTER.swapTokensForExactETH(
-    //     amountOut,
-    //     amountIn,
-    //     [USDCAddress, wethAdress],
-    //     impersonatedSigner.address,
-    //     deadline
-    // );
 
     
         
@@ -74,28 +64,17 @@ const main = async () => {
     await swapTx.wait();
 
 
-    // Uncomment this if you are using the swap tokens for ETH
-    // const ethBalAfterSwap = await impersonatedSigner.provider.getBalance(USDCHolder);
-    // const wethBalAfterSwap = await WETH.balanceOf(impersonatedSigner.address);
 
     const usdcBalAfterSwap = await USDC.balanceOf(impersonatedSigner.address);
     const daiBalAfterSwap = await DAI.balanceOf(impersonatedSigner.address);
 
     console.log("-----------------------------------------------------------------")
 
-    // Uncomment this if you are using the swap tokens for ETH
-    // console.log("weth balance before swap", ethers.formatUnits(wethBalAfterSwap, 18));
-    // console.log("eth balance after swap", ethers.formatUnits(ethBalAfterSwap, 18));
     
     console.log("usdc balance after adding liquidity", ethers.formatUnits(usdcBalAfterSwap, 6) );
     console.log("dai balance after adding liquidity", ethers.formatUnits(daiBalAfterSwap, 18) );
 
-    /*
-
-    console.log("usdc balance before swap", Number(usdcBal._hex));
-    // console.log("weth balance before swap", Number(wethBal._hex));
-    console.log("eth balance before swap", Number(ethBal._hex));
-    */
+ 
 }
 
 main().catch((error) => {
