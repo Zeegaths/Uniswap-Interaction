@@ -36,8 +36,8 @@ const main = async () => {
     const approveTx2 = await WETH.connect(impersonatedSigner).approve(UNIRouter , amountEth);
     await approveTx2.wait();
 
-    const ethBal = await impersonatedSigner.provider.getBalance(USDCHolder);
-    const wethBal = await WETH.balanceOf(impersonatedSigner.address);
+    // const ethBal = await impersonatedSigner.provider.getBalance(USDCHolder);
+    // const wethBal = await WETH.balanceOf(impersonatedSigner.address);
 
     const usdcBal = await USDC.balanceOf(impersonatedSigner.address);
     const daiBal = await DAI.balanceOf(impersonatedSigner.address);
@@ -82,9 +82,9 @@ const main = async () => {
     console.log("dai balance after adding liquidity", ethers.formatUnits(daiBalAfterSwap, 18) );
 
 
-    console.log("usdc balance before swap", Number(usdcBal._hex));
-    console.log("weth balance before swap", Number(wethBal._hex));
-    console.log("eth balance before swap", Number(ethBal._hex));
+    // console.log("usdc balance before swap", Number(usdcBal._hex));
+    // console.log("weth balance before swap", Number(wethBal._hex));
+    // console.log("eth balance before swap", Number(ethBal._hex));
     
 }
 
